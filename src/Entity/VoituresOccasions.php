@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VoituresOccasionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,7 +19,7 @@ class VoituresOccasions
     #[ORM\Column]
     private ?int $prix = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $annee = null;
 
     #[ORM\Column]
@@ -28,6 +30,21 @@ class VoituresOccasions
 
     #[ORM\Column(length: 50)]
     private ?string $boiteDeVitesse = null;
+
+    #[ORM\OneToOne(mappedBy: 'annoncesVoituresOccasions', cascade: ['persist', 'remove'])]
+    private ?Annonces $annonces = null;
+
+    #[ORM\OneToMany(mappedBy: 'voituresOccasions', targetEntity: Images::class, cascade: ['persist'], orphanRemoval: true)]
+    private Collection $voituresOcassionsImages;
+
+    #[ORM\ManyToOne(inversedBy: 'voituresOccasions')]
+    private ?Marques $voituresOcassionsMarques = null;
+
+    public function __construct()
+    {
+        $this->voituresOcassionsImages = new ArrayCollection();
+        $this->voituresOcassionsMarques = null;
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +107,65 @@ class VoituresOccasions
     public function setBoiteDeVitesse(string $boiteDeVitesse): static
     {
         $this->boiteDeVitesse = $boiteDeVitesse;
+
+        return $this;
+    }
+
+    public function getAnnonces(): ?Annonces
+    {
+        return $this->annonces;
+    }
+
+    public function setAnnonces(Annonces $annonces): static
+    {
+        // set the owning side of the relation if necessary
+        if ($annonces->getAnnoncesVoituresOccasions() !== $this) {
+            $annonces->setAnnoncesVoituresOccasions($this);
+        }
+
+        $this->annonces = $annonces;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getVoituresOcassionsImages(): Collection
+    {
+        return $this->voituresOcassionsImages;
+    }
+
+    public function addVoituresOcassionsImage(Images $voituresOcassionsImage): static
+    {
+        if (!$this->voituresOcassionsImages->contains($voituresOcassionsImage)) {
+            $this->voituresOcassionsImages->add($voituresOcassionsImage);
+            $voituresOcassionsImage->setVoituresOccasions($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVoituresOcassionsImage(Images $voituresOcassionsImage): static
+    {
+        if ($this->voituresOcassionsImages->removeElement($voituresOcassionsImage)) {
+            // set the owning side to null (unless already changed)
+            if ($voituresOcassionsImage->getVoituresOccasions() === $this) {
+                $voituresOcassionsImage->setVoituresOccasions(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getVoituresOcassionsMarques(): ?Marques
+    {
+        return $this->voituresOcassionsMarques;
+    }
+
+    public function setVoituresOcassionsMarques(?Marques $voituresOcassionsMarques): static
+    {
+        $this->voituresOcassionsMarques = $voituresOcassionsMarques;
 
         return $this;
     }

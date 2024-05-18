@@ -8,6 +8,11 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<VoituresOccasions>
+ *
+ * @method VoituresOccasions|null find($id, $lockMode = null, $lockVersion = null)
+ * @method VoituresOccasions|null findOneBy(array $criteria, array $orderBy = null)
+ * @method VoituresOccasions[]    findAll()
+ * @method VoituresOccasions[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class VoituresOccasionsRepository extends ServiceEntityRepository
 {
@@ -15,6 +20,8 @@ class VoituresOccasionsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, VoituresOccasions::class);
     }
+
+    
 
     //    /**
     //     * @return VoituresOccasions[] Returns an array of VoituresOccasions objects

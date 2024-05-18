@@ -17,17 +17,20 @@ class Horaires
     #[ORM\Column(length: 10)]
     private ?string $Jours = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $horairesOuverturesMatin = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $horairesFermeturesMatin = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $horairesOuverturesSoir = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $horairesFermeturesSoir = null;
+
+    #[ORM\ManyToOne(inversedBy: 'userHoraires')]
+    private ?User $userHoraires = null;
 
     public function getId(): ?int
     {
@@ -90,6 +93,18 @@ class Horaires
     public function setHorairesFermeturesSoir(?\DateTimeInterface $horairesFermeturesSoir): static
     {
         $this->horairesFermeturesSoir = $horairesFermeturesSoir;
+
+        return $this;
+    }
+
+    public function getUserHoraires(): ?User
+    {
+        return $this->userHoraires;
+    }
+
+    public function setUserHoraires(?User $userHoraires): static
+    {
+        $this->userHoraires = $userHoraires;
 
         return $this;
     }

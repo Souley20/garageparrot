@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AvisRepository;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
@@ -15,19 +16,40 @@ class Avis
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Regex(
+        pattern: "/^[^&<>\"']*$/",
+        message: "Le nom ne doit pas contenir de caractères spéciaux."
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Regex(
+        pattern: "/^[^&<>\"']*$/",
+        message: "Le prenom ne doit pas contenir de caractères spéciaux."
+    )]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 2000)]
+    #[Assert\Regex(
+        pattern: "/^[^&<>\"']*$/",
+        message: "Le commentaire ne doit pas contenir de caractères spéciaux."
+    )]
     private ?string $commentaire = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column]
-    private ?bool $valide = null;
+    #[ORM\Column(options: ["default" => false])]
+    private ?bool $valide;
+
+    #[ORM\ManyToOne(inversedBy: 'userAvis')]
+    private ?User $userAvis = null;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+        $this->valide = false;
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +112,18 @@ class Avis
     public function setValide(bool $valide): static
     {
         $this->valide = $valide;
+
+        return $this;
+    }
+
+    public function getUserAvis(): ?Users
+    {
+        return $this->userAvis;
+    }
+
+    public function setUserAvis(?User $userAvis): static
+    {
+        $this->userAvis = $userAvis;
 
         return $this;
     }

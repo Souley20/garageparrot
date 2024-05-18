@@ -19,6 +19,13 @@ class Annonces
     #[ORM\Column(length: 8)]
     private ?string $dateDePublication = null;
 
+    #[ORM\OneToOne(inversedBy: 'annonces', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?VoituresOccasions $annoncesVoituresOccasions = null;
+
+    #[ORM\ManyToOne(inversedBy: 'userAnnonces')]
+    private ?User $userAnnonces = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +51,30 @@ class Annonces
     public function setDateDePublication(string $dateDePublication): static
     {
         $this->dateDePublication = $dateDePublication;
+
+        return $this;
+    }
+
+    public function getAnnoncesVoituresOccasions(): ?VoituresOccasions
+    {
+        return $this->annoncesVoituresOccasions;
+    }
+
+    public function setAnnoncesVoituresOccasions(VoituresOccasions $annoncesVoituresOccasions): static
+    {
+        $this->annoncesVoituresOccasions = $annoncesVoituresOccasions;
+
+        return $this;
+    }
+
+    public function getUsersAnnonces(): ?User
+    {
+        return $this->userAnnonces;
+    }
+
+    public function setUserAnnonces(?Users $userAnnonces): static
+    {
+        $this->userAnnonces = $userAnnonces;
 
         return $this;
     }

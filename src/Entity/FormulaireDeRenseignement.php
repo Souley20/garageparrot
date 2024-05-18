@@ -15,25 +15,70 @@ class FormulaireDeRenseignement
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    /**
+     * @Assert\Regex(
+     *     pattern="/^[^&<>\"']*$/",
+     *     match=true,
+     *     message="Le nom ne doit pas contenir de caractères spéciaux."
+     * )
+     */
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
+    /**
+     * @Assert\Regex(
+     *     pattern="/^[^&<>\"']*$/",
+     *     match=true,
+     *     message="Le nom ne doit pas contenir de caractères spéciaux."
+     * )
+     */
     private ?string $prenom = null;
 
     #[ORM\Column(length: 10)]
+    /**
+     * @Assert\Regex(
+     *     pattern="/^[^&<>\"']*$/",
+     *     match=true,
+     *     message="Le nom ne doit pas contenir de caractères spéciaux."
+     * )
+     */
     private ?string $telephone = null;
 
     #[ORM\Column(length: 180)]
+    /**
+     * @Assert\Regex(
+     *     pattern="/^[^&<>\"']*$/",
+     *     match=true,
+     *     message="Le nom ne doit pas contenir de caractères spéciaux."
+     * )
+     */
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    /**
+     * @Assert\Regex(
+     *     pattern="/^[^&<>\"']*$/",
+     *     match=true,
+     *     message="Le nom ne doit pas contenir de caractères spéciaux."
+     * )
+     */
     private ?string $sujet = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    /**
+     * @Assert\Regex(
+     *     pattern="/^[^&<>\"']*$/",
+     *     match=true,
+     *     message="Le nom ne doit pas contenir de caractères spéciaux."
+     * )
+     */
     private ?string $message = null;
 
     #[ORM\Column(length: 255)]
     private ?string $valide = null;
+
+    #[ORM\ManyToOne(inversedBy: 'UsersFormulaire')]
+    private ?User $UserFormulaire = null;
 
     public function getId(): ?int
     {
@@ -112,14 +157,26 @@ class FormulaireDeRenseignement
         return $this;
     }
 
-    public function getValide(): ?string
+    public function getValide(): ?bool
     {
         return $this->valide;
     }
 
-    public function setValide(string $valide): static
+    public function setValide(bool $valide): static
     {
         $this->valide = $valide;
+
+        return $this;
+    }
+
+    public function getUsersFormulaire(): ?User
+    {
+        return $this->UserFormulaire;
+    }
+
+    public function setUsersFormulaire(?User $UsersFormulaire): static
+    {
+        $this->UserFormulaire = $UsersFormulaire;
 
         return $this;
     }
