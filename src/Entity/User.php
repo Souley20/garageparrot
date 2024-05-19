@@ -111,7 +111,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
-    public function getUsersIdentifier(): string
+    public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
@@ -317,31 +317,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->userAnnonces;
     }
 
-    public function addUsersAnnonce(Annonces $userAnnonce): static
+    public function addUserAnnonces(Annonces $userAnnonces): static
     {
-        if (!$this->userAnnonces->contains($userAnnonce)) {
-            $this->userAnnonces->add($userAnnonce);
-            $userAnnonce->setUserAnnonces($this);
+        if (!$this->userAnnonces->contains($userAnnonces)) {
+            $this->userAnnonces->add($userAnnonces);
+            $userAnnonces->setUserAnnonces($this);
         }
 
         return $this;
     }
 
-    public function removeUserAnnonce(Annonces $userAnnonce): static
+    public function removeUserAnnonces(Annonces $userAnnonces): static
     {
-        if ($this->usersAnnonces->removeElement($usersAnnonce)) {
+        if ($this->userAnnonces->removeElement($userAnnonces)) {
             // set the owning side to null (unless already changed)
-            if ($userAnnonce->getUserAnnonces() === $this) {
-                $userAnnonce->setUserAnnonces(null);
+            if ($userAnnonces->getUserAnnonces() === $this) {
+                $userAnnonces->setUserAnnonces(null);
             }
         }
 
         return $this;
-    }
-    /**
-     * Returns the identifier for this user (e.g. username or email address).
-     * @return string
-     */
-    public function getUserIdentifier(): string {
     }
 }

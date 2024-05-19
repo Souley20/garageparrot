@@ -37,12 +37,12 @@ class Roles
         return $this;
     }
 
-    public function getUsersRoles(): ?User
+    public function getUserRoles(): ?User
     {
         return $this->userRoles;
     }
 
-    public function setUserRoles(?Users $userRoles): static
+    public function setUserRoles(?User $userRoles): static
     {
         $this->userRoles = $userRoles;
 

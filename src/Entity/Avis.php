@@ -116,7 +116,7 @@ class Avis
         return $this;
     }
 
-    public function getUserAvis(): ?Users
+    public function getUserAvis(): ?User
     {
         return $this->userAvis;
     }

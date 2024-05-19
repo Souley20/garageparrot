@@ -29,6 +29,9 @@
         "symfony/form": "6.4.*",
         "symfony/framework-bundle": "6.4.*",
         "symfony/http-client": "6.4.*",
+        "symfony/mailer": "6.4.*",
+        "symfony/monolog-bundle": "*",
+        "symfony/notifier": "6.4.*",
         "symfony/property-access": "6.4.*",
         "symfony/property-info": "6.4.*",
         "symfony/runtime": "6.4.*",
@@ -41,7 +44,10 @@
         "vich/uploader-bundle": "*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.59"
+        "doctrine/doctrine-fixtures-bundle": "*",
+        "symfony/maker-bundle": "*",
+        "symfony/stopwatch": "6.4.*",
+        "symfony/web-profiler-bundle": "6.4.*"
     },
     "config": {
         "allow-plugins": {

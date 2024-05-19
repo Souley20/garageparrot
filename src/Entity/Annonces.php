@@ -67,12 +67,12 @@ class Annonces
         return $this;
     }
 
-    public function getUsersAnnonces(): ?User
+    public function getUserAnnonces(): ?User
     {
         return $this->userAnnonces;
     }
 
-    public function setUserAnnonces(?Users $userAnnonces): static
+    public function setUserAnnonces(?User $userAnnonces): static
     {
         $this->userAnnonces = $userAnnonces;
 
