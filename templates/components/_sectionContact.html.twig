@@ -1,0 +1,51 @@
+<section class="contact">
+	<div class="letsDoThis reveal fade-bottom">
+		<h2>Let's do this
+			<span class="point">!</span>
+		</h2>
+		<p class="largeParagraph">Vous souhaitez acheter, travailler avec nous ou simplement en savoir plus sur le Garage V.Parrot ? Vous êtes au bon endroit.</p>
+		<div class="splitParagraph">
+			<div class="paragraph">
+				<h6>Fast & TLD</h6>
+				<p>Fast & Top-level domain is a potential partner of our company. It is specialized in the field of website programming.</p>
+			</div>
+			<div class="paragraph">
+				<h6>FR</h6>
+				<p>Garage V. Parrot - 36 Avenue de Castelnau 34090 Montpellier</p>
+			</div>
+		</div>
+		<a href="">sanogo.s@laposte.net</a>
+	</div>
+
+	{{ form_start(contactForm, {'attr': {'class': 'contact-form reveal fade-bottomThree', 'id': 'contact-form'}}) }}
+
+	<div class="formGroup">
+		{{ form_widget(contactForm.nom) }}
+	</div>
+
+	<div class="formGroup">
+		{{ form_widget(contactForm.prenom) }}
+	</div>
+
+	<div class="formGroup">
+		{{ form_widget(contactForm.email) }}
+	</div>
+
+	<div class="formGroup">
+		{{ form_widget(contactForm.telephone) }}
+	</div>
+
+	<div class="formGroup">
+		{{ form_widget(contactForm.sujet) }}
+	</div>
+
+	<div class="formGroup">
+		{{ form_widget(contactForm.message) }}
+	</div>
+
+	<div class="formGroup">
+		{{ form_widget(contactForm.envoyer, {'attr': {'class': 'btn'}}) }}
+	</div>
+
+	{{ form_end(contactForm) }}
+</section>

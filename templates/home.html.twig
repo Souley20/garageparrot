@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% set additional_script = 'js/formAvis.js' %}
+
+{% block main %}
+	<!-- HEADER -->
+	{% include "_components/_header.html.twig" %}
+	<!-- SECTION CATEGORIE -->
+	{% include "_components/_sectionCategorie.html.twig" %}
+	<!-- SECTION SERVICES-->
+	{% include "_components/_sectionServices.html.twig" %}
+	<!-- SECTION AVIS-->
+	{% include "_components/_sectionAvis.html.twig" with {'form': form} %}
+{% endblock %}

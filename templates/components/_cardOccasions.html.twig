@@ -1,0 +1,35 @@
+<div id="containerVoituresOccasions">
+	{% for voitureOccasion in voituresOccasions %}
+		<div class="cardOccasions">
+			{% if voitureOccasion.voituresOcassionsImages|length > 0 %}
+				{% set image = voitureOccasion.voituresOcassionsImages.first %}
+				<img class="img" src="{{ asset('images/products/' ~ image.nom) }}" alt="Image de {{ voitureOccasion.voituresOcassionsMarques.nomMarques }} {{ voitureOccasion.voituresOcassionsMarques.modeles }}"/>
+			{% else %}
+				<img class="img" src="{{ asset('images/default.jpg') }}" alt="Image par défaut"/>
+			{% endif %}
+			<div class="description">
+				<h4 class="titleDescription">
+					{{voitureOccasion.voituresOcassionsMarques.nomMarques}}
+					-
+					{{voitureOccasion.voituresOcassionsMarques.modeles }}
+				</h4>
+				<p class="price">Prix :
+					{{ voitureOccasion.prix }}</p>
+				<p>Critères :</p>
+				<div class="filter">
+					<div class="years">Année :
+						{{ voitureOccasion.annee|date('Y') }}</div>
+					<div class="kilometers">Kilometrages :
+						{{ voitureOccasion.kilometrage }}</div>
+					<div class="fuel">Carburant :
+						{{ voitureOccasion.carburant }}</div>
+					<div class="gearbox">Boite de vitesse :
+						{{ voitureOccasion.boiteDeVitesse }}</div>
+				</div>
+				<span>
+					<a class="nav-link" href="{{ path('voitureOccasion', {'id': voitureOccasion.id}) }}">Détails</a>
+				</span>
+			</div>
+		</div>
+	{% endfor %}
+</div>
