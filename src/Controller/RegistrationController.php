@@ -15,12 +15,11 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_register', methods: ['GET'], schemes: [HTTP])]
+    #[Route('/inscription', name: 'app_register', methods: ['GET'])]
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        UserAuthenticatorInterface $userAuthenticator,
-        UserAuthenticator $authenticator,
+        UserAuthenticatorInterface $userAuthenticator,        
         EntityManagerInterface $entityManager
     ): Response {
         $user = new User();
@@ -46,7 +45,7 @@ class RegistrationController extends AbstractController
 
             return $userAuthenticator->authenticateUser(
                 $user,
-                $authenticator,
+                $form->get('')->getData(),
                 $request
             );
         }

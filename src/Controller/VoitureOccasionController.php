@@ -10,7 +10,7 @@ use App\Repository\HorairesRepository;
 
 class VoitureOccasionController extends AbstractController
 {
-    #[Route('/voitureOccasion/{id</+>}', name: 'voitureOccasion', methods: ['GET'], schemes:[HTTP])]
+    #[Route('/voitureOccasion/{id</+>}', name: 'voitureOccasion', methods: ['GET'])]
     public function show(int $id, VoituresOccasionsRepository $voituresOccasionsRepository, HorairesRepository $horairesRepository,): Response
     {
         $horaires = $horairesRepository->findAll();
