@@ -84,4 +84,4 @@ Félicitation ! Vous êtes maintenant connecté en tant qu'administrateur et vou
 * Les avis des clients
 * Et les compte employées
 
-## Projet est en cours de production continue.
+## Projet est en cours de production.
