@@ -9,9 +9,11 @@ use App\Entity\Avis;
 use App\Form\AvisType;
 use Doctrine\ORM\EntityManagerInterface;
 
+# [Route('/api/voitureOccasion', name: 'app_api_voitureOccasion_')]
 class AvisController extends AbstractController
 {
-    public function soumettreAvis(Request $request, EntityManagerInterface $entityManager): Response
+    # [Route('/{id}', methods: 'POST')
+    public function soumettreAvis(Request $request, EntityManagerInterface $entityManager) : Response
     {
         $avis = new Avis();
         $form = $this->createForm(AvisType::class, $avis);

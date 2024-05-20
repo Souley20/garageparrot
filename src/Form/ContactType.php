@@ -43,6 +43,9 @@ class ContactType extends AbstractType
             ])
             ->add('envoyer', SubmitType::class, [
                 'attr' => ['class' => 'button'],
+            ])
+            ->add('message', CheckboxType::class, [
+                'attr' => ['class' => 'button'],
             ]);
     }
 }

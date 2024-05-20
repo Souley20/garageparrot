@@ -10,10 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
+#[Route('/api/voitureOccasion', name: 'app_api_voitureOccasion_')]
 class NosOccasionsController extends AbstractController
 {
-    #[Route('/nosOccasions', name: 'nosOccasions', methods: ['GET'])]
-    public function index(VoituresOccasionsRepository $voituresOccasionsRepository, HorairesRepository $horairesRepository, Request $request): Response
+    #[Route('/voitureOccasion', name: 'index', methods: 'POST')]
+    public function index(VoituresOccasionsRepository $voituresOccasionsRepository, HorairesRepository $horairesRepository, Request $request) : Response
     {
         $horaires = $horairesRepository->findAll();
 

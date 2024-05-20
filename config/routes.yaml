@@ -13,3 +13,4 @@ admin_dashboard:
 employe_dashboard:
   path: /employe/dashboard
   controller: App\Controller\Admin\DashboardControllerEmploye::index
+

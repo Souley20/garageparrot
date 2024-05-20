@@ -13,13 +13,15 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
+#[Route('/api/voitureOccasion', name: 'app_api_voitureOccasion_')]
 class RegistrationController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_register', methods: ['GET'])]
+    #[Route('/inscription', name: 'app_register', methods: ['PUT'])]
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        UserAuthenticatorInterface $userAuthenticator,        
+        UserAuthenticatorInterface $Authenticator,
+        UserAuthenticator $authenticator,        
         EntityManagerInterface $entityManager
     ): Response {
         $user = new User();
@@ -45,7 +47,7 @@ class RegistrationController extends AbstractController
 
             return $userAuthenticator->authenticateUser(
                 $user,
-                $form->get('')->getData(),
+                $Authenticator,
                 $request
             );
         }

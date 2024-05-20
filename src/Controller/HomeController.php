@@ -13,10 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 
+#[Route('/api/voitureOccasion', name: 'app_api_voitureOccasion_')]
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'home', methods: ['GET'])]
-    public function home(Request $request, EntityManagerInterface $entityManager, ServicesRepository $servicesRepository, AvisRepository $avisRepository, HorairesRepository $horairesRepository): Response
+    #[Route('/home', name: 'home', methods: 'PUT')]
+    public function home(Request $request, EntityManagerInterface $entityManager, ServicesRepository $servicesRepository, AvisRepository $avisRepository, HorairesRepository $horairesRepository) : Response
     {
         $avis = new Avis();
         $form = $this->createForm(AvisType::class, $avis);

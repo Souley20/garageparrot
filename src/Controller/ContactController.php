@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+#[Route('/api/voitureOccasion', name: 'app_api_voitureOccasion_')]
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'contact', methods: ['GET'])]
-    public function contact(Request $request, HorairesRepository $horairesRepository, EntityManagerInterface $entityManager): Response
+    #[Route('/contact', name: 'contact', methods: 'POST')]
+    public function contact(Request $request, HorairesRepository $horairesRepository, EntityManagerInterface $entityManager) : Response
     {
         $form = $this->createForm(ContactType::class);
 
