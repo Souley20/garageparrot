@@ -1,4 +1,3 @@
-
 # ECF - Garage.V.Parrot
 
 Présentation du projet :
